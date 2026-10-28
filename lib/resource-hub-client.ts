@@ -112,11 +112,14 @@ function buildMirrorUrls(source: ResourceHubSource, path: string): string[] {
     const ref = effectiveRef(source);
     const clean = encodePath(path);
     return [
+        `https://testingcf.jsdelivr.net/gh/${owner}/${repo}@${ref}/${clean}`,
+        `https://gcore.jsdelivr.net/gh/${owner}/${repo}@${ref}/${clean}`,
         `https://cdn.jsdelivr.net/gh/${owner}/${repo}@${ref}/${clean}`,
         `https://fastly.jsdelivr.net/gh/${owner}/${repo}@${ref}/${clean}`,
         `https://raw.githubusercontent.com/${owner}/${repo}/${ref}/${clean}`,
     ];
 }
+
 
 async function fetchWithTimeout(url: string, init?: RequestInit): Promise<Response> {
     const controller = new AbortController();
